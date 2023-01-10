@@ -1,0 +1,8 @@
+@use './styles/variables.scss' as vars;
+
+.qtw-app {
+  color: vars.$font-color;
+  font-weight: vars.$font-weight;
+  min-height: 100vh;
+  background: linear-gradient(rgb(0 202 255), rgb(255 255 255));
+}
