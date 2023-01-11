@@ -1,0 +1,64 @@
+@use "../../styles/variables.scss" as vars;
+
+$cloud-shift: 2.5rem;
+
+.qtw-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(vars.$color-blue-sky, vars.$color-white);
+}
+
+.qtw-loading__sun {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background: vars.$color-ow-sun;
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  left: calc(50% - 1.5rem);
+  z-index: 1;
+
+  transform: translateX(-30%);
+  animation-name: qtw-sun-loading;
+  animation-iteration-count: infinite;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+.qtw-loading__cloud {
+  height: 6rem;
+  width: 6rem;
+  color: vars.$color-light;
+  position: absolute;
+  top: calc(50% - #{$cloud-shift});
+  left: calc(50% - #{$cloud-shift});
+  z-index: 2;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.qtw-loading__label {
+  position: absolute;
+  color: vars.$color-ow-sun;
+  top: $cloud-shift;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+  z-index: 3;
+}
+
+@keyframes qtw-sun-loading {
+  from {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(100%);
+  }
+}

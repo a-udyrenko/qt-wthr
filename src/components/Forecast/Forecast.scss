@@ -1,0 +1,132 @@
+@use "../../styles/variables.scss" as vars;
+@use "../../styles/mixins.scss" as mixins;
+
+.qtw-forecast {
+  position: relative;
+  min-height: 100%;
+}
+
+.qtw-forecast__content {
+  @include mixins.fade-in;
+}
+
+.qtw-forecast__day-section {
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 200;
+  margin-top: 1rem;
+  border-bottom: 1px solid vars.$color-grey-semi-tr;
+
+  &:last-child {
+    border-bottom-color: transparent;
+  }
+}
+
+.qtw-forecast__day-label {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+
+  .qtw-bold {
+    font-weight: 400;
+  }
+}
+
+.qtw-forecast__day-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.qtw-forecast__day-temp-arrow-up,
+.qtw-forecast__day-temp-arrow-down {
+  opacity: 0.5;
+  transform: scale(1.2);
+}
+.qtw-forecast__day-temp-arrow-up {
+  color: vars.$color-ow-sun;
+}
+.qtw-forecast__day-temp-arrow-down {
+  color: vars.$color-blue;
+  position: relative;
+  top: 0.2rem;
+}
+
+.qtw-forecast__day-temp-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.qtw-forecast__day-temp-label {
+  .qtw-bold {
+    font-weight: 400;
+  }
+}
+
+.qtw-forecast__day-weather {
+  flex: 0 0 50%;
+}
+
+.qtw-forecast__day-weather-icon {
+  height: 6rem;
+  text-align: right;
+
+  img {
+    height: 100%;
+  }
+}
+
+//
+//
+//
+//
+//
+//
+
+.qtw-day-temp-scale-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0.5rem 0;
+}
+
+.qtw-day-temp-scale__timeline {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+}
+
+.qtw-day-temp-scale {
+  display: flex;
+  background: vars.$color-grey-semi-tr;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 0.5rem 0;
+
+  &.qtw-today {
+    justify-content: flex-end;
+  }
+}
+
+.qtw-day-temp-scale__step {
+  flex: 0 1 12.5%;
+  text-align: center;
+  font-size: 1rem;
+  font-family: Oswald;
+  font-weight: 400;
+  padding: 0.5rem 0;
+  background: vars.$color-white;
+  border-left: 1px solid vars.$color-grey-semi-tr;
+
+  &:first-child {
+    border-left-color: transparent;
+  }
+}
+
+.qtw-day-temp-scale__step-unit {
+  font-size: 0.75rem;
+  font-weight: 200;
+  vertical-align: top;
+  white-space: nowrap;
+}

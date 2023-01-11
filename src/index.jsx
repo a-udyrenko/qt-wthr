@@ -8,8 +8,12 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import './styles/index.scss';
-import AppLayout from './components/AppLayout';
 import App from './App';
+import {
+  AppLayout,
+  Today,
+  Forecast
+} from './components';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,8 +27,8 @@ const router = createBrowserRouter(
           element={<Navigate to="/forecast" replace />}
         />
         <Route element={<AppLayout />}>
-          <Route path="/forecast" element={<h1>Forecast!</h1>} />
-          <Route path="/today" element={<h1>Today!</h1>} />
+          <Route path="/forecast" element={<Forecast />} />
+          <Route path="/today" element={<Today />} />
           <Route path="*" element={<h1>Oh, 404!</h1>} />
         </Route>
       </Route>

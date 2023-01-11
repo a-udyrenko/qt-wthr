@@ -1,0 +1,15 @@
+@mixin fade-in() {
+  animation-name: qtw-fade-in;
+  animation-iteration-count: 1;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+
+  @keyframes qtw-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
