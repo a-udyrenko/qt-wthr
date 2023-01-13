@@ -12,7 +12,9 @@ import App from './App';
 import {
   AppLayout,
   Today,
-  Forecast
+  Forecast,
+  ErrorBoundary,
+  NotFound
 } from './components';
 import reportWebVitals from './reportWebVitals';
 
@@ -21,7 +23,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}>
+      <Route
+        path="/"
+        element={<App />}
+        errorElement={<ErrorBoundary />}
+      >
         <Route
           path="/"
           element={<Navigate to="/forecast" replace />}
@@ -29,7 +35,8 @@ const router = createBrowserRouter(
         <Route element={<AppLayout />}>
           <Route path="/forecast" element={<Forecast />} />
           <Route path="/today" element={<Today />} />
-          <Route path="*" element={<h1>Oh, 404!</h1>} />
+          <Route path="/error" element={<ErrorBoundary />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
     </>

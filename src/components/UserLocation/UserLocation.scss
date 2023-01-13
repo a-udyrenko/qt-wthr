@@ -1,0 +1,24 @@
+@use "../../styles/variables.scss" as vars;
+
+.qtw-user-location {
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    font-size: 1rem;
+  }
+}
+
+.qtw-user-location__loading {
+  color: vars.$color-white;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    font-size: 1rem;
+  }
+}

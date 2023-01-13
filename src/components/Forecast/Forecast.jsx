@@ -8,6 +8,7 @@ import {
   getMonthLabel
 } from '../../utils/helpers';
 import { prepareForecastDataForUi } from '../../utils/weather-data-processing';
+import TempScale from '../TempScale/TempScale';
 
 const Forecast = () => {
   const {
@@ -65,21 +66,7 @@ const Forecast = () => {
                 </div>
               </div>
 
-              <div className="qtw-day-temp-scale-container">
-                <div className="qtw-day-temp-scale__timeline">
-                  <div className="qtw-day-temp-scale__time">00:00</div>
-                  <div className="qtw-day-temp-scale__time">12:00</div>
-                  <div className="qtw-day-temp-scale__time">23:59</div>
-                </div>
-                <div className={`qtw-day-temp-scale ${dateDataIndex === 0 ? 'qtw-today' : ''}`}>
-                  {dateData.tempSet.map((temp, i) => (
-                    <div
-                      key={i}
-                      className="qtw-day-temp-scale__step"
-                    >{temp}<span className="qtw-day-temp-scale__step-unit">°C</span></div>
-                  ))}
-                </div>
-              </div>
+              <TempScale isToday={dateDataIndex === 0} tempSet={dateData.tempSet} />
 
             </div>
           ))}

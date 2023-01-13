@@ -13,7 +13,6 @@ const useUserLocation = () => {
       // Get data for detected user location
       getReverseGeoData({ latitude, longitude })
         .then(({ data }) => {
-          console.log('GEOCODED?', data);
           setUserLocationData(data[0]);
         });
     } else {
@@ -23,7 +22,6 @@ const useUserLocation = () => {
             coords: { latitude, longitude },
           } = data;
 
-          console.log('Location detected!', data);
           setUserLocation({ latitude, longitude });
         },
         (err) => {

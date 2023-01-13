@@ -20,8 +20,6 @@ const Today = () => {
     }
   }, [weatherData]);
 
-  console.log('prepareTodayDataForUi CHECK?', { weatherData, dataForUi });
-
   const now = new Date();
 
   return (
