@@ -1,0 +1,65 @@
+@use "../../styles/variables.scss" as vars;
+
+$desktop-header-height: 5rem;
+$desktop-sidebar-width: 12rem;
+
+.qtw-app {
+  color: vars.$font-color;
+  font-weight: vars.$font-weight;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: relative;
+    padding-left: $desktop-sidebar-width;
+  }
+}
+
+.qtw-app-header {
+  flex: 0 0 auto;
+  background: vars.$color-blue-sky;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  order: 1;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: absolute;
+    left: 0;
+    width: $desktop-sidebar-width;
+    height: $desktop-header-height;
+    background: #023664;
+    color: white;
+  }
+}
+
+.qtw-app-nav {
+  flex: 0 0 auto;
+  padding: 1rem;
+  background: vars.$color-white;
+  order: 3;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: absolute;
+    left: 0;
+    width: $desktop-sidebar-width;
+    bottom: 0;
+    top: $desktop-header-height;
+    background: vars.$color-blue-dark;
+    padding: 0 0 0 1rem;
+  }
+}
+
+.qtw-app-body {
+  flex: 1 1 100%;
+  overflow: auto;
+  background: linear-gradient(vars.$color-blue-sky, vars.$color-white);
+  order: 2;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    order: 3;
+    background: vars.$color-white;
+  }
+}

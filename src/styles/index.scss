@@ -1,0 +1,16 @@
+@use "../styles/variables.scss" as vars;
+@import-normalize;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: vars.$rem;
+  min-width: 320px;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  font-family: 'Oswald', sans-serif;
+}

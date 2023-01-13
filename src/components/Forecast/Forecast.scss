@@ -1,0 +1,89 @@
+@use "../../styles/variables.scss" as vars;
+@use "../../styles/mixins.scss" as mixins;
+
+.qtw-forecast {
+  position: relative;
+  min-height: 100%;
+
+  .qtw-bold {
+    font-weight: 400;
+  }
+
+  max-width: vars.$breakpoint-desktop-max;
+}
+
+.qtw-forecast__content {
+  @include mixins.fade-in;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+}
+
+.qtw-forecast__day-section {
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 200;
+  border-bottom: 1px solid vars.$color-grey-semi-tr;
+
+  &:last-child {
+    border-bottom-color: transparent;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    $card-margin: 1rem;
+
+    flex: 1 1 calc(50% - #{$card-margin * 2});
+    border: 1px solid vars.$color-light;
+    margin: $card-margin;
+    border-radius: 0.25rem;
+    background-color: vars.$color-lightest;
+    box-shadow: vars.$shadow;
+  }
+}
+
+.qtw-forecast__day-label {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.qtw-forecast__day-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.qtw-forecast__day-temp-arrow-up,
+.qtw-forecast__day-temp-arrow-down {
+  opacity: 0.5;
+  transform: scale(1.2);
+}
+.qtw-forecast__day-temp-arrow-up {
+  color: vars.$color-ow-sun;
+}
+.qtw-forecast__day-temp-arrow-down {
+  color: vars.$color-blue;
+  position: relative;
+  top: 0.2rem;
+}
+
+.qtw-forecast__day-temp-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.qtw-forecast__day-weather {
+  flex: 0 0 50%;
+}
+
+.qtw-forecast__day-weather-icon {
+  height: 6rem;
+  text-align: right;
+
+  img {
+    height: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+@use "../../styles/variables.scss" as vars;
+
+.qtw-not-found {
+  padding: 1rem;
+  text-align: center;
+  color: vars.$color-blue-dark;
+}

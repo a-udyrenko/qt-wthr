@@ -1,0 +1,120 @@
+@use "../../styles/variables.scss" as vars;
+@use "../../styles/mixins.scss" as mixins;
+
+.qtw-today {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  max-width: 920px;
+
+  .qtw-bold {
+    font-weight: 400;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    overflow: visible;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+.qtw-today__content {
+  @include mixins.fade-in;
+  font-size: 1.25rem;
+  font-weight: 200;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    padding: 1rem;
+  }
+}
+
+.qtw-today__content-scroll {
+  flex: 1 1 100%;
+  overflow: auto;
+}
+
+.qtw-today__now-date {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 0 1rem;
+  flex: 0 0 auto;
+}
+
+.qtw-today__now-weather {
+  padding: 2rem 1rem 0 1rem;
+}
+
+.qtw-today__label {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem 0;
+
+  .qtw-bold {
+    font-weight: 400;
+  }
+}
+
+.qtw-today__now-weather-icon {
+  height: 8rem;
+  text-align: center;
+
+  img {
+    height: 100%;
+    transform: scale(1.5);
+
+    @include mixins.zoom-in;
+  }
+}
+
+.qtw-today__now-info {
+  text-align: center;
+}
+
+.qtw-today__weather-descr {
+  display: inline-block;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.qtw-today__now-details {
+  padding: 2rem 1rem;
+  border-bottom: 1px solid vars.$color-grey-semi-tr;
+  line-height: 1.5;
+}
+
+.qtw-today__now-detail-row {
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.qtw-today__hour-section {
+  padding: 1rem;
+  border-bottom: 1px solid vars.$color-grey-semi-tr;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:last-child {
+    border-bottom-color: transparent;
+  }
+}
+
+.qtw-today__hour-weather-icon {
+  height: 2rem;
+  text-align: center;
+
+  img {
+    height: 100%;
+    transform: scale(2);
+  }
+}
