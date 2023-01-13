@@ -7,7 +7,7 @@ const Loading = () => {
       <div className="qtw-loading__sun"></div>
       <div className="qtw-loading__cloud">
         <CloudIcon />
-        <div className="qtw-loading__label">Loading...</div>
+        <div className="qtw-loading__label">Loading</div>
       </div>
     </div>
   );

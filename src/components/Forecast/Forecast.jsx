@@ -14,19 +14,17 @@ const Forecast = () => {
     weatherData
   } = useContext(AppContext);
 
-  const weatherDataPreparedForUi = useMemo(() => {
+  const dataForUi = useMemo(() => {
     if (weatherData) {
       return prepareForecastDataForUi(weatherData);
     }
   }, [weatherData]);
 
-  console.log('weatherDataPreparedForUi RF?', {weatherData, weatherDataPreparedForUi});
-
   return (
     <div className="qtw-forecast">
-      {weatherDataPreparedForUi ? (
+      {dataForUi ? (
         <div className="qtw-forecast__content">
-          {weatherDataPreparedForUi.map((dateData, dateDataIndex) => (
+          {dataForUi.map((dateData, dateDataIndex) => (
             <div
               className="qtw-forecast__day-section"
               key={dateData.date.getDate()}
@@ -46,17 +44,17 @@ const Forecast = () => {
 
               <div className="qtw-forecast__day-data">
                 <div className="qtw-forecast__day-temp-data">
-                  <div className="qtw-forecast__day-temp-label">
+                  <div>
                     <span className="qtw-forecast__day-temp-arrow-up"><RiArrowUpLine /></span>
                     <span>Max:</span>
                     <span className="qtw-bold"> {dateData.tempMax}</span>
-                    <span> °C</span>
+                    <span>°C</span>
                   </div>
-                  <div className="qtw-forecast__day-temp-label">
+                  <div>
                     <span className="qtw-forecast__day-temp-arrow-down"><RiArrowDownLine /></span>
                     <span>Min:</span>
                     <span className="qtw-bold"> {dateData.tempMin}</span>
-                    <span> °C</span>
+                    <span>°C</span>
                   </div>
                 </div>
 
@@ -78,7 +76,7 @@ const Forecast = () => {
                     <div
                       key={i}
                       className="qtw-day-temp-scale__step"
-                    >{temp}<span className="qtw-day-temp-scale__step-unit"> °C</span></div>
+                    >{temp}<span className="qtw-day-temp-scale__step-unit">°C</span></div>
                   ))}
                 </div>
               </div>

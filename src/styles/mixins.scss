@@ -13,3 +13,19 @@
     }
   }
 }
+
+@mixin zoom-in() {
+  animation-name: qtw-zoom-in;
+  animation-iteration-count: 1;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+
+  @keyframes qtw-zoom-in {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}

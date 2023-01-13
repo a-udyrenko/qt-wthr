@@ -20,6 +20,9 @@ const getMostFrequentValueFromDate = (dateData, key) => {
 const getWeekDayLabel = (date) => new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
 const getMonthLabel = (date) => new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
 
+const getTimeValueForLabel = (value) => value.toString().length > 1 ? value : `0${value}`;
+const getTimeValueLabel = (date) => `${getTimeValueForLabel(date.getHours())}:${getTimeValueForLabel(date.getMinutes())}`;
+
 export {
   getMinValueFromDate,
   getMaxValueFromDate,
@@ -27,4 +30,5 @@ export {
   getMostFrequentValueFromDate,
   getWeekDayLabel,
   getMonthLabel,
+  getTimeValueLabel
 };

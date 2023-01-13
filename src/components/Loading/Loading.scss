@@ -9,6 +9,10 @@ $cloud-shift: 2.5rem;
   bottom: 0;
   left: 0;
   background: linear-gradient(vars.$color-blue-sky, vars.$color-white);
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    background: vars.$color-white;
+  }
 }
 
 .qtw-loading__sun {
@@ -52,6 +56,16 @@ $cloud-shift: 2.5rem;
   text-align: center;
   z-index: 3;
   z-index: 3;
+
+  &:after {
+    content: "...";
+
+    animation-name: qtw-text-loading;
+    animation-iteration-count: infinite;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
 }
 
 @keyframes qtw-sun-loading {
@@ -60,5 +74,14 @@ $cloud-shift: 2.5rem;
   }
   to {
     transform: translate(100%);
+  }
+}
+
+@keyframes qtw-text-loading {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

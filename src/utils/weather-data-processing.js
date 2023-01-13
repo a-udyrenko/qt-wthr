@@ -10,7 +10,9 @@ import {
 
 // Api returns the set of 3-hours chunks of data for the next 5 days.
 // This function parses it and collects all single date related chunks under one key.
-const mapWeatherDataPerDate = (weatherData) => {
+// Returns an object, where each key corresponds to the separate date,
+// and each value corresponds to the set of 3-hours weather data chunks for that date. 
+const mapWeatherDataChunksPerDate = (weatherData) => {
   const forecastDataPerDate = weatherData.list.reduce((acc, chunk) => {
     const dateChunkData = {
       date: new Date(chunk.dt * 1000),
@@ -27,8 +29,6 @@ const mapWeatherDataPerDate = (weatherData) => {
 
     const chunkDate = dateChunkData.date.getDate();
 
-    // Accumulator is an object, where each key corresponds to the date,
-    // and each value corresponds to the set of weather data for that date. 
     acc[chunkDate] = acc[chunkDate] ? [...acc[chunkDate], dateChunkData] : [dateChunkData];
 
     return acc;
@@ -38,18 +38,18 @@ const mapWeatherDataPerDate = (weatherData) => {
 };
 
 const prepareForecastDataForUi = (apiWeatherData) => {
-  const forecastDataPerDate = mapWeatherDataPerDate(apiWeatherData);
-  
+  const dataChunksPerDate = mapWeatherDataChunksPerDate(apiWeatherData);
+
   // Parse 3-hours weather data chunks for each date and calculates the needed values for UI.
-  const forecastDataForUi = Object.values(forecastDataPerDate).reduce((acc, dateData) => {
+  const forecastDataForUi = Object.values(dataChunksPerDate).reduce((acc, dateChunks) => {
     acc.push({
-      date: dateData[0].date,
-      weather: getMostFrequentValueFromDate(dateData, 'weather'),
-      icon: getMostFrequentValueFromDate(dateData, 'icon').replace('n', 'd'), // use only day icons
-      tempMin: getMinValueFromDate(dateData, 'temp'),
-      tempMax: getMaxValueFromDate(dateData, 'temp'),
-      tempSet: dateData.map((chunk) => chunk.temp),
-      humidity: getAvgValueFromDate(dateData, 'humidity'),
+      date: dateChunks[0].date, // Pick first chunk date, cause hours are not important here
+      weather: getMostFrequentValueFromDate(dateChunks, 'weather'),
+      icon: getMostFrequentValueFromDate(dateChunks, 'icon').replace('n', 'd'), // use only day icons
+      tempMin: getMinValueFromDate(dateChunks, 'temp'),
+      tempMax: getMaxValueFromDate(dateChunks, 'temp'),
+      tempSet: dateChunks.map((chunk) => chunk.temp),
+      humidity: getAvgValueFromDate(dateChunks, 'humidity'),
     });
 
     return acc;
@@ -59,24 +59,11 @@ const prepareForecastDataForUi = (apiWeatherData) => {
 };
 
 const prepareTodayDataForUi = (apiWeatherData) => {
-  const forecastDataPerDate = mapWeatherDataPerDate(apiWeatherData);
-  
-  // Parse 3-hours weather data chunks for each date and calculates the needed values for UI.
-  const forecastDataForUi = Object.values(forecastDataPerDate).reduce((acc, dateData) => {
-    acc.push({
-      date: dateData[0].date,
-      weather: getMostFrequentValueFromDate(dateData, 'weather'),
-      icon: getMostFrequentValueFromDate(dateData, 'icon').replace('n', 'd'), // use only day icons
-      tempMin: getMinValueFromDate(dateData, 'temp'),
-      tempMax: getMaxValueFromDate(dateData, 'temp'),
-      tempSet: dateData.map((chunk) => chunk.temp),
-      humidity: getAvgValueFromDate(dateData, 'humidity'),
-    });
+  const dataChunksPerDate = mapWeatherDataChunksPerDate(apiWeatherData);
 
-    return acc;
-  }, []);
+  const todayDataForUi = dataChunksPerDate[Math.min(...Object.keys(dataChunksPerDate))];
 
-  return forecastDataForUi;
+  return todayDataForUi;
 };
 
 export {

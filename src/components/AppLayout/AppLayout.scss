@@ -1,5 +1,8 @@
 @use "../../styles/variables.scss" as vars;
 
+$desktop-header-height: 5rem;
+$desktop-sidebar-width: 12rem;
+
 .qtw-app {
   color: vars.$font-color;
   font-weight: vars.$font-weight;
@@ -7,6 +10,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: relative;
+    padding-left: $desktop-sidebar-width;
+  }
 }
 
 .qtw-app-header {
@@ -16,16 +24,14 @@
   display: flex;
   justify-content: center;
   order: 1;
-}
 
-.qtw-user-location {
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    margin-right: 0.5rem;
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: absolute;
+    left: 0;
+    width: $desktop-sidebar-width;
+    height: $desktop-header-height;
+    background: #023664;
+    color: white;
   }
 }
 
@@ -34,10 +40,27 @@
   padding: 1rem;
   background: vars.$color-white;
   order: 3;
-  
-  @media (min-width: 481px) {
-    background: vars.$color-blue-sky;
-    order: 2;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    position: absolute;
+    left: 0;
+    width: $desktop-sidebar-width;
+    bottom: 0;
+    top: $desktop-header-height;
+    background: vars.$color-blue-dark;
+    padding: 0 0 0 1rem;
+  }
+}
+
+.qtw-app-body {
+  flex: 1 1 100%;
+  overflow: auto;
+  background: linear-gradient(vars.$color-blue-sky, vars.$color-white);
+  order: 2;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    order: 3;
+    background: vars.$color-white;
   }
 }
 
@@ -48,6 +71,11 @@
   padding: 0;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .qtw-nav__item {
@@ -57,6 +85,10 @@
 
   &:last-child {
     margin-right: 0;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    margin: 0 0 0.5rem 0;
   }
 }
 
@@ -72,20 +104,41 @@
   background-color: transparent;
   color: vars.$color-blue;
   border: 2px solid vars.$color-light;
-  transition: vars.$transition-quick;
 
   &.qtw-active {
     border-color: vars.$color-blue;
   }
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    border-color: transparent;
+    color: vars.$color-white;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    
+    &.qtw-active {
+      background: #fff;
+      color: vars.$color-blue;
+      border: 2px solid vars.$color-light;
+      border-right-color: transparent;
+    }
+  }
 }
 
-.qtw-app-body {
-  flex: 1 1 100%;
-  overflow: auto;
-  background: linear-gradient(vars.$color-blue-sky, vars.$color-white);
-  order: 2;
+.qtw-user-location {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  @media (min-width: 481px) {
-    order: 3;
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.qtw-user-location__loading {
+  color: vars.$color-white;
+
+  @media (min-width: vars.$breakpoint-desktop-min) {
+    font-size: 1rem;
   }
 }

@@ -24,7 +24,7 @@ const AppLayout = () => {
               <span>{userLocation.data.name}</span>
             </>
           ) : (
-            <span>Getting location data...</span>
+            <span className="qtw-user-location__loading">Getting location data...</span>
           )}
         </div>
       </div>
